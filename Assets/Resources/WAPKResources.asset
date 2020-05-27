@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f583f85124fe444f8e08ea14aaaabe0, type: 3}
+  m_Name: WAPKResources
+  m_EditorClassIdentifier: 
+  resources:
+  - path: Prefabs/Map
+    asset: {fileID: 4751232324778254785, guid: fde2056139fea4e8a8890415d21a09e7, type: 3}
+  - path: Prefabs/MapTile
+    asset: {fileID: 1462225346332608693, guid: 505c73ea34bb24fada6461cb4da0bb41, type: 3}
+  - path: Prefabs/Body
+    asset: {fileID: 1452619111333500799, guid: 7756c3cd9169d47568d068917dd4d9c3, type: 3}

@@ -13,17 +13,33 @@ public class Snake : MonoBehaviour
         SOUTH,
         WEST,
     }
-    private float _velocity = 0.0f;
-    private Vector2 _pos = Vector2.zero;
-    private Vector3 _dir = Vector3.up;
+
+    public Vector2 Position
+    {
+        get
+        {
+            return _position;
+        }
+        set
+        {
+            transform.localPosition = new Vector3(value.x * _bodySize * 0.01f, value.y * _bodySize * 0.01f, 0);
+            _position = value;
+        }
+    }
+
+    private uint _velocity = 0;
+    private uint _bodySize = 1;
+    private float _moveTime = 0;
+
+    private Vector2 _position = Vector2.zero;
+    private Vector2 _dir = Vector2.up;
     private List<Body> _bodies = new List<Body>();
 
     public static Snake Create(Dir dir, uint length, uint bodySize = 1)
     {
         GameObject go = new GameObject("Snake");
         Snake result = go.AddComponent<Snake>();
-        result._dir = Vector3.up;
-        result._velocity = 1.0f;
+        result._dir = Vector2.up;
         result.Init(length, bodySize);
 
         return result;
@@ -31,6 +47,7 @@ public class Snake : MonoBehaviour
 
     private void Init(uint length, uint bodySize)
     {
+        _bodySize = bodySize;
         Body bodyOriginal = WAPK.Resources.Load<GameObject>("Prefabs/Body").GetComponent<Body>();
 
         for (int i = 0; i < length; i++)
@@ -46,10 +63,31 @@ public class Snake : MonoBehaviour
 
     public void SetBodySize(uint bodySize)
     {
+        _bodySize = bodySize;
         for (int i = 0; i < _bodies.Count; i++)
         {
             _bodies[i].SetSize(bodySize, bodySize);
             _bodies[i].transform.localPosition = -_dir * i * 0.01f * bodySize;
+        }
+    }
+
+    public void MoveFront(uint velocity)
+    {
+        _velocity = velocity;
+        _moveTime = 0.0f;
+    }
+
+    public void Update()
+    {
+        if (_velocity.Equals(0.0f)) return;
+
+        float before = _moveTime % (1.0f/_velocity);
+
+        _moveTime += Time.deltaTime;
+
+        if (before > _moveTime % (1.0f / _velocity))
+        {
+            Position = Position + _dir;
         }
     }
 }

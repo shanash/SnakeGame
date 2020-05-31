@@ -14,6 +14,9 @@ public class GameScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (_world.IsMapOutSnake())
+        {
+            Debug.Log("Out!!!");
+        }
     }
 }

@@ -18,7 +18,7 @@ public class Snake : MonoBehaviour
     private Vector3 _dir = Vector3.up;
     private List<Body> _bodies = new List<Body>();
 
-    public static Snake Create(Dir dir, uint length, uint bodySize)
+    public static Snake Create(Dir dir, uint length, uint bodySize = 1)
     {
         GameObject go = new GameObject("Snake");
         Snake result = go.AddComponent<Snake>();
@@ -40,6 +40,16 @@ public class Snake : MonoBehaviour
             body.transform.localPosition = -_dir * i * 0.01f * bodySize;
             body.SetSize(bodySize, bodySize);
 
+            _bodies.Add(body);
+        }
+    }
+
+    public void SetBodySize(uint bodySize)
+    {
+        for (int i = 0; i < _bodies.Count; i++)
+        {
+            _bodies[i].SetSize(bodySize, bodySize);
+            _bodies[i].transform.localPosition = -_dir * i * 0.01f * bodySize;
         }
     }
 }

@@ -52,6 +52,8 @@ public class Map : MonoBehaviour
     public void Set(Snake snake, uint tilePosX, uint tilePosY)
     {
         snake.transform.SetParent(this.transform);
+        snake.SetBodySize(_tileSize);
+        snake.transform.localPosition = new Vector3(tilePosX * _tileSize * 0.01f, tilePosY * _tileSize * 0.01f, 0);
     }
 
 }

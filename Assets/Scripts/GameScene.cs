@@ -9,14 +9,20 @@ public class GameScene : MonoBehaviour
     private void Start()
     {
         _world = new World();
+        _world.Start();
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (_world.IsMapOutSnake())
         {
-            Debug.Log("Out!!!");
+            GameOver();
         }
+    }
+
+    private void GameOver()
+    {
+        _world.Pause();
     }
 }

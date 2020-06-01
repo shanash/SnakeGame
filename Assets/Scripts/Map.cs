@@ -7,13 +7,13 @@ public class Map : MonoBehaviour
 
     [SerializeField] private static Sprite _spr = null;
 
-    private uint _row = 0;
-    private uint _column = 0;
-    private uint _tileSize = 0;
+    private ushort _row = 0;
+    private ushort _column = 0;
+    private ushort _tileSize = 0;
 
     private List<SpriteRenderer> _mapTiles = new List<SpriteRenderer>();
 
-    public static Map Create(int posX, int posY, uint row, uint column, uint tileSize)
+    public static Map Create(int posX, int posY, ushort row, ushort column, ushort tileSize)
     {
         if (_basePrefab == null)
         {
@@ -58,6 +58,13 @@ public class Map : MonoBehaviour
 
     public bool IsOut(Snake snake)
     {
+        int x = (int)(snake.transform.localPosition.x * 100.0f) / _tileSize;
+        int y = (int)(snake.transform.localPosition.y * 100.0f) / _tileSize;
+        if (x < 0) return true;
+        if (x >= _row) return true;
+        if (y < 0) return true;
+        if (y >= _column) return true;
+
         return false;
     }
 

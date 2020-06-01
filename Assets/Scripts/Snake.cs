@@ -77,6 +77,11 @@ public class Snake : MonoBehaviour
         _moveTime = 0.0f;
     }
 
+    public void Stop()
+    {
+        _velocity = 0;
+    }
+
     public void Update()
     {
         if (_velocity.Equals(0.0f)) return;

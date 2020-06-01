@@ -27,15 +27,23 @@ public class World
         _snake.Stop();
     }
 
-    private void Update()
+    public void Update()
     {
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            Debug.Log("UpArrow");
+            _snake.Turn(Vector2.up);
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            Debug.Log("DownArrow");
+            _snake.Turn(Vector2.down);
+        }
+        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            _snake.Turn(Vector2.left);
+        }
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            _snake.Turn(Vector2.right);
         }
     }
 }

@@ -77,6 +77,13 @@ public class Snake : MonoBehaviour
         _moveTime = 0.0f;
     }
 
+    public void Turn(Vector2 dir)
+    {
+        if (Vector2.zero == _dir + dir) return;
+
+        _dir = dir;
+    }
+
     public void Stop()
     {
         _velocity = 0;
@@ -92,6 +99,13 @@ public class Snake : MonoBehaviour
 
         if (before > _moveTime % (1.0f / _velocity))
         {
+            Vector3 dir3 = _dir;
+
+            for (int i = _bodies.Count - 1; i > 0; i--)
+            {
+                _bodies[i].transform.position = _bodies[i-1].transform.position - dir3 * 0.01f * _bodySize;
+            }
+
             Position = Position + _dir;
         }
     }

@@ -10,6 +10,8 @@ public class World
         _map = Map.Create(100,100, 50, 100, 10);
         _snake = Snake.Create(Snake.Dir.NORTH, 4);
         _map.Set(_snake, 2, 5);
+
+        _map.Set(Feed.Create(), 10, 10);
     }
 
     public bool IsMapOutSnake()

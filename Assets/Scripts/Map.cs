@@ -56,6 +56,15 @@ public class Map : MonoBehaviour
         snake.Position = new Vector2(tilePosX, tilePosY);//tilePosX * _tileSize * 0.01f, tilePosY * _tileSize * 0.01f);
     }
 
+    //** 중복
+    public void Set(Feed feed, uint tilePosX, uint tilePosY)
+    {
+        feed.transform.SetParent(this.transform);
+        feed.SetBodySize(_tileSize);
+        feed.Position = new Vector2(tilePosX, tilePosY);//tilePosX * _tileSize * 0.01f, tilePosY * _tileSize * 0.01f);
+    }
+    //**
+
     public bool IsOut(Snake snake)
     {
         int x = (int)(snake.transform.localPosition.x * 100.0f) / _tileSize;
